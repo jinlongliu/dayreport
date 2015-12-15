@@ -25,6 +25,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import java.io.Serializable;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 @Entity
 @Table(name="workday_report",catalog="dayreport")
 @Indexed
@@ -37,7 +39,7 @@ public class WorkdayReport extends BaseObject implements Serializable {
     private String tomrrowPlan;
     private Date writeTime;
 
-    @Id  @DocumentId    
+    @Id  @GeneratedValue(strategy=IDENTITY) @DocumentId
     public Long getId() {
         return this.id;
     }
@@ -49,14 +51,6 @@ public class WorkdayReport extends BaseObject implements Serializable {
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="user_id", nullable=false)
-    public User getReport_user() {
-        return reportUser;
-    }
-
-    public void setReport_user(User reportUser) {
-        this.reportUser = reportUser;
-    }
-
     public User getReportUser() {
         return reportUser;
     }
