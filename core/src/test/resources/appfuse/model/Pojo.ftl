@@ -20,7 +20,7 @@ ${pojo.getPackageDeclaration()}
 
 }
 </#assign>
-import ${appfusepackage}.model.BaseObject;
+import ${basepackage}.model.BaseObject;
 
 import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Field;

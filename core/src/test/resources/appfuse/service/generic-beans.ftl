@@ -1,17 +1,17 @@
 <#assign pojoNameLower = pojo.shortName.substring(0,1).toLowerCase()+pojo.shortName.substring(1)>
 <!--${pojo.shortName}Manager-START-->
-    <bean id="${pojoNameLower}Manager" class="${appfusepackage}.service.impl.GenericManagerImpl">
+    <bean id="${pojoNameLower}Manager" class="${basepackage}.service.impl.GenericManagerImpl">
         <constructor-arg>
             <#if daoframework == "hibernate">
-            <bean class="${appfusepackage}.dao.hibernate.GenericDaoHibernate">
+            <bean class="${basepackage}.dao.hibernate.GenericDaoHibernate">
                 <constructor-arg value="${pojo.packageName}.${pojo.shortName}"/>
             </bean>
             <#elseif daoframework == "ibatis">
-            <bean class="${appfusepackage}.dao.ibatis.GenericDaoiBatis">
+            <bean class="${basepackage}.dao.ibatis.GenericDaoiBatis">
                 <constructor-arg value="${pojo.packageName}.${pojo.shortName}"/>
             </bean>
             <#elseif daoframework == "jpa">
-            <bean class="${appfusepackage}.dao.jpa.GenericDaoJpa">
+            <bean class="${basepackage}.dao.jpa.GenericDaoJpa">
                 <constructor-arg value="${pojo.packageName}.${pojo.shortName}"/>
             </bean>
             </#if>

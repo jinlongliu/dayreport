@@ -3,7 +3,7 @@ package ${basepackage}.dao.hibernate;
 
 import ${basepackage}.model.${pojo.shortName};
 import ${basepackage}.dao.${pojo.shortName}Dao;
-import ${appfusepackage}.dao.hibernate.GenericDaoHibernate;
+import ${basepackage}.dao.hibernate.GenericDaoHibernate;
 import org.springframework.stereotype.Repository;
 
 @Repository("${pojoNameLower}Dao")

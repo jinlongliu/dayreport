@@ -9,7 +9,7 @@ import java.util.List;
 
 import ${basepackage}.dao.${pojo.shortName}Dao;
 import ${basepackage}.model.${pojo.shortName};
-import ${appfusepackage}.service.impl.BaseManagerMockTestCase;
+import ${basepackage}.service.impl.BaseManagerMockTestCase;
 
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
