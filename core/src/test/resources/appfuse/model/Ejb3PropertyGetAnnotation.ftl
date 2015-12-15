@@ -6,9 +6,9 @@
     </#if><#rt/>
     <#if c2h.isManyToOne(property)><#rt/>
         <#--TODO support @OneToOne true and false-->
-        <#lt/>${pojo.generateManyToOneAnnotation(property)}
+        <#lt/>    ${pojo.generateManyToOneAnnotation(property)}
         <#--TODO support optional and targetEntity-->
-        <#lt/>${pojo.generateJoinColumnsAnnotation(property)}
+        <#lt/>${pojo.generateJoinColumnsAnnotation(property, cfg)}
         <#elseif c2h.isCollection(property)><#rt/>
             <#lt/>${pojo.generateCollectionAnnotation(property, cfg)}
         <#else><#rt/>
