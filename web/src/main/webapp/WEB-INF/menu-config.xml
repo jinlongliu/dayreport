@@ -12,36 +12,10 @@
             <Item name="ReloadContext" title="menu.admin.reload" page="/admin/reload"/>
             <Item name="FileUpload" title="menu.selectFile" page="/selectFile"/>
         </Menu>
-        <Menu name="Logout" title="user.logout" page="/logout" roles="ROLE_ADMIN,ROLE_USER"/>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         <!--WorkdayReport-START-->
-        <Menu name="WorkdayReportMenu" title="workdayReportList.title" page="/workdayReports"/>
+        <Menu name="WorkdayReportMenu" title="workdayReportList.title" page="/workdayReports" roles="ROLE_ADMIN,ROLE_USER"/>
         <!--WorkdayReport-END-->
+        <Menu name="Logout" title="user.logout" page="/logout" roles="ROLE_ADMIN,ROLE_USER"/>
     </Menus>
 
 
