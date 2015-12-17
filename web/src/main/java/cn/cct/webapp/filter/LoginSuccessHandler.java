@@ -39,13 +39,16 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
                                         Authentication authentication) throws IOException, ServletException {
         LOG.debug("User login success");
-
+        User user = (User) authentication.getPrincipal();
+        if(user != null){
+            httpServletRequest.getSession().setAttribute("loginUserId", user.getId());
+        }
         httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/home");
     }
 
     public void setLastLoginTime(HttpServletRequest request, Authentication authentication){
         User user = (User) authentication.getPrincipal();
-
+        LOG.debug(user.toString());
         LOG.debug(user.toString() + "last login time is :" );
     }
 
