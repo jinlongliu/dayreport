@@ -8,5 +8,6 @@
     <session-factory>
         <mapping class="cn.cct.model.User"/>
         <mapping class="cn.cct.model.Role"/>
+        <mapping class="cn.cct.model.WorkdayReport"/>
     </session-factory>
 </hibernate-configuration>
