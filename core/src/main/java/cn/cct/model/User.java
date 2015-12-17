@@ -154,7 +154,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
      */
     @Transient
     public String getFullName() {
-        return firstName + ' ' + lastName;
+        return firstName + "" + lastName;
     }
 
     @Embedded
