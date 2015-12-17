@@ -118,7 +118,76 @@
             <result name="success">/</result>
         </action>
 
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        <!--WorkdayReportAction-START-->
+        <action name="workdayReports" class="cn.cct.webapp.action.WorkdayReportAction" method="list">
+            <result>/WEB-INF/pages/workdayReportList.jsp</result>
+        </action>
+
+        <action name="editWorkdayReport" class="cn.cct.webapp.action.WorkdayReportAction" method="edit">
+            <result>/WEB-INF/pages/workdayReportForm.jsp</result>
+            <result name="error">/WEB-INF/pages/workdayReportList.jsp</result>
+        </action>
+
+        <action name="saveWorkdayReport" class="cn.cct.webapp.action.WorkdayReportAction" method="save">
+            <result name="input">/WEB-INF/pages/workdayReportForm.jsp</result>
+            <result name="cancel" type="redirectAction">workdayReports</result>
+            <result name="delete" type="redirectAction">workdayReports</result>
+            <result name="success" type="redirectAction">workdayReports</result>
+        </action>
+        <!--WorkdayReportAction-END-->
+
         <!-- Add additional actions here -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </package>
 
     <!-- Actions in this package will be prefixed with /admin/ -->

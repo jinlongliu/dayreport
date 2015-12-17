@@ -13,7 +13,7 @@
 
     <!-- runs all targets -->
     <target name="run-all-tests"
-        depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload"
+        depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,WorkdayReportTests"
         description="Call and executes all test cases (targets)"/>
 
     <!-- runs user-related tests -->
@@ -243,4 +243,150 @@
             </steps>
         </webtest>
     </target>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!--WorkdayReport-START-->
+    <!-- runs workdayReport-related tests -->
+    <target name="WorkdayReportTests" depends="SearchWorkdayReports,EditWorkdayReport,SaveWorkdayReport,AddWorkdayReport,DeleteWorkdayReport"
+            description="Call and executes all workdayReport test cases (targets)">
+        <echo>Successfully ran all WorkdayReport UI tests!</echo>
+    </target>
+
+    <!-- Verify the workdayReports list screen displays without errors -->
+    <target name="SearchWorkdayReports" description="Tests search for and displaying all workdayReports">
+        <webtest name="searchWorkdayReports">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View WorkdayReport link" url="/workdayReports"/>
+                <verifytitle description="we should see the workdayReportList title"
+                             text=".*${workdayReportList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the workdayReportList title"
+                             text=".*${workdayReportList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit workdayReport screen displays without errors -->
+    <target name="EditWorkdayReport" description="Tests editing an existing WorkdayReport's information">
+        <webtest name="editWorkdayReport">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit WorkdayReport link" url="/editWorkdayReport?id=-1"/>
+                <verifytitle description="we should see the workdayReportDetail title"
+                             text=".*${workdayReportDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a workdayReport and then save -->
+    <target name="SaveWorkdayReport" description="Tests editing and saving a workdayReport">
+        <webtest name="saveWorkdayReport">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit WorkdayReport link" url="/editWorkdayReport?id=-1"/>
+                <verifytitle description="we should see the workdayReportDetail title"
+                             text=".*${workdayReportDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+                <setInputField description="set userId" name="workdayReport.userId" value="6732969980889719808"/>
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                             text=".*${workdayReportDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${workdayReport.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new WorkdayReport -->
+    <target name="AddWorkdayReport" description="Adds a new WorkdayReport">
+        <webtest name="addWorkdayReport">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/editWorkdayReport"/>
+                <verifytitle description="we should see the workdayReportDetail title"
+                             text=".*${workdayReportDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+                <setInputField description="set userId" name="workdayReport.userId" value="4919581202005502976"/>
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="WorkdayReport List appears if save successful"
+                             text=".*${workdayReportList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${workdayReport.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing workdayReport -->
+    <target name="DeleteWorkdayReport" description="Deletes existing WorkdayReport">
+        <webtest name="deleteWorkdayReport">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit WorkdayReport link" url="/editWorkdayReport?id=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display WorkdayReport List" text=".*${workdayReportList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${workdayReport.deleted}"/>
+            </steps>
+        </webtest>
+    </target>
+    <!--WorkdayReport-END-->
 </project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

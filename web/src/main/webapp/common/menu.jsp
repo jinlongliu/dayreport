@@ -12,6 +12,35 @@
     <menu:displayMenu name="UserMenu"/>
     <menu:displayMenu name="AdminMenu"/>
     <menu:displayMenu name="Logout"/>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!--WorkdayReport-START-->
+    <menu:displayMenu name="WorkdayReportMenu"/>
+    <!--WorkdayReport-END-->
 </ul>
 </div>
 </menu:useMenuDisplayer>

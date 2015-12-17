@@ -101,6 +101,7 @@ public class SignupAction extends BaseAction {
         SecurityContextHolder.getContext().setAuthentication(auth);
 
         // Send an account information e-mail
+        mailMessage.setFrom(getText("team.name") + "<huaxunchina_jira@126.com>");
         mailMessage.setSubject(getText("signup.email.subject"));
 
         try {
