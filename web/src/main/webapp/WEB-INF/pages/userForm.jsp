@@ -70,9 +70,9 @@
             </div>
         </div>
 
-        <s:textfield key="user.website" required="true" cssClass="form-control"/>
+        <%--<s:textfield key="user.website" required="true" cssClass="form-control"/>--%>
 
-        <fieldset>
+        <%--<fieldset>
             <legend class="accordion-heading">
                 <a data-toggle="collapse" href="#collapse-address"><fmt:message key="user.address.address"/></a>
             </legend>
@@ -100,7 +100,7 @@
                     <appfuse:country name="user.address.country" prompt="" default="${country}"/>
                 </div>
             </div>
-        </fieldset>
+        </fieldset>--%>
         <c:choose>
             <c:when test="${param.from == 'list'}">
                 <fieldset class="form-group">
