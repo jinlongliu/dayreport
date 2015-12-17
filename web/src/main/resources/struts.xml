@@ -118,42 +118,13 @@
             <result name="success">/</result>
         </action>
 
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
         <!--WorkdayReportAction-START-->
         <action name="workdayReports" class="cn.cct.webapp.action.WorkdayReportAction" method="list">
             <result>/WEB-INF/pages/workdayReportList.jsp</result>
+        </action>
+
+        <action name="showReports" class="cn.cct.webapp.action.WorkdayReportAction" method="showReports">
+            <result>/WEB-INF/pages/showReportList.jsp</result>
         </action>
 
         <action name="editWorkdayReport" class="cn.cct.webapp.action.WorkdayReportAction" method="edit">

@@ -13,6 +13,7 @@
     <menu:displayMenu name="AdminMenu"/>
     <!--WorkdayReport-START-->
     <menu:displayMenu name="WorkdayReportMenu"/>
+    <menu:displayMenu name="ReportHistoryMenu"/>
     <!--WorkdayReport-END-->
     <menu:displayMenu name="Logout"/>
 </ul>
