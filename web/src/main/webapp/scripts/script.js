@@ -38,7 +38,7 @@ function createFormElement(element, type, name, id, value, parent) {
 }
 
 function confirmDelete(obj) {
-    var msg = "Are you sure you want to delete this " + obj + "?";
+    var msg = "是否确认删除" + obj + "?";
     ans = confirm(msg);
     return ans;
 }
