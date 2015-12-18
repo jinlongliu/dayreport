@@ -122,13 +122,67 @@ public class WorkdayReportManagerImpl extends GenericManagerImpl<WorkdayReport, 
 
             }
 
-
             FileOutputStream excelOutputFile = new FileOutputStream(storePath + "WorkdayReport-"+today+".xls");
             wb.write(excelOutputFile);
             excelOutputFile.close();
 
         }catch (Exception e){
             log.debug(e.getMessage());
+        }
+    }
+
+
+    @Override
+    public String getEmailBody() {
+        String emailBody = "";
+        try{
+            log.info("Start edit email body----------------");
+
+
+            String today = sdf.format(new Date());
+            HashMap<String, Object> queryParams = new HashMap<String, Object>();
+            Date queryToday = sdf2.parse(today + " 00:00:00");
+            queryParams.put("writeTime", queryToday);
+            List workdayReports = workdayReportDao.findByNamedQuery("queryReportsByDate", queryParams);
+            log.debug(workdayReports);
+
+            emailBody += today + "教育开发组日报:\r\n\r\n";
+//            emailBody += "人员\t\t\t\t当日处理\t\t\t\t次日计划\r\n";
+
+            Iterator<WorkdayReport> iterator = workdayReports.iterator();
+            while(iterator.hasNext()){
+
+
+                WorkdayReport workdayReport = iterator.next();
+                User user = userDao.get(workdayReport.getUserId());
+
+
+                String[] todayReport= workdayReport.getTodayReport().split("\r\n");
+                log.debug(todayReport.toString());
+                String[] tomorrowPlan = workdayReport.getTomrrowPlan().split("\r\n");
+                log.debug(tomorrowPlan.toString());
+                int reportNum = todayReport.length;
+                int planNum = tomorrowPlan.length;
+                log.debug(todayReport.length + " "+ tomorrowPlan.length);
+
+                emailBody += user.getFullName() + "\r\n";
+                emailBody += "当日处理:";
+
+                for(int i=0; i<reportNum; i++){
+                    emailBody += todayReport[i] +";";
+                }
+                emailBody += "\r\n";
+                emailBody += "次日计划:";
+
+                for(int i=0; i<planNum; i++){
+                    emailBody += tomorrowPlan[i] +";";
+                }
+                emailBody += "\r\n\r\n";
+            }
+        }catch (Exception e){
+            log.debug(e.getMessage());
+        }finally {
+            return emailBody;
         }
     }
 }

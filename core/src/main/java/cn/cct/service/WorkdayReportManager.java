@@ -10,5 +10,7 @@ import javax.jws.WebService;
 public interface WorkdayReportManager extends GenericManager<WorkdayReport, Long> {
 
     public void exportReports(String storePath);
+
+    public String getEmailBody();
     
 }
