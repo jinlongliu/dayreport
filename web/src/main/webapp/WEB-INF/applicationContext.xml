@@ -21,7 +21,7 @@
     <task:annotation-driven scheduler="jobTask"/>
     <task:scheduler id="jobTask" pool-size="10"/>
     <task:scheduled-tasks>
-        <task:scheduled ref="exportTask" method="exportReports" cron="0/30 * * * * ?"/>
+        <task:scheduled ref="exportTask" method="exportReports" cron="0 30 23 * * ?"/>
     </task:scheduled-tasks>
 
 </beans>
