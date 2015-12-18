@@ -34,12 +34,13 @@
         <display:column property="workdayReport.id" sortable="true" href="editWorkdayReport" media="html"
             paramId="id" paramProperty="workdayReport.id" titleKey="workdayReport.id"/>
         <display:column property="workdayReport.id" media="csv excel xml pdf" titleKey="workdayReport.id"/>
-        <display:column property="workdayReport.lastUpdateTime" sortable="true" titleKey="workdayReport.lastUpdateTime"/>
+        <display:column property="reportWriteName" sortable="true" titleKey="workdayReport.writeName"/>
         <display:column property="workdayReport.todayReport" sortable="true" titleKey="workdayReport.todayReport"/>
         <display:column property="workdayReport.tomrrowPlan" sortable="true" titleKey="workdayReport.tomrrowPlan"/>
-        <display:column property="workdayReport.userId" sortable="true" titleKey="workdayReport.userId"/>
-        <display:column property="reportWriteName" sortable="true" titleKey="workdayReport.userId"/>
+        <%--<display:column property="workdayReport.userId" sortable="true" titleKey="workdayReport.userId"/>--%>
+
         <display:column property="workdayReport.writeTime" sortable="true" titleKey="workdayReport.writeTime"/>
+        <display:column property="workdayReport.lastUpdateTime" sortable="true" titleKey="workdayReport.lastUpdateTime"/>
 
         <display:setProperty name="paging.banner.item_name"><fmt:message key="workdayReportList.workdayReport"/></display:setProperty>
         <display:setProperty name="paging.banner.items_name"><fmt:message key="workdayReportList.workdayReports"/></display:setProperty>
