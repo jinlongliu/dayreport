@@ -8,5 +8,7 @@ import javax.jws.WebService;
 
 @WebService
 public interface WorkdayReportManager extends GenericManager<WorkdayReport, Long> {
+
+    public void exportReports(String storePath);
     
 }
