@@ -41,6 +41,7 @@
                 <configuration>
                     <componentProperties>
                         <implementation>annotationconfiguration</implementation>
+                        <revengfile>src/main/resources/hibernate.reveng.xml</revengfile>
                     </componentProperties>
                     <genericCore>${amp.genericCore}</genericCore>
                     <fullSource>${amp.fullSource}</fullSource>
@@ -57,7 +58,7 @@
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <configuration>
-                    <url>http://218.94.109.106:25568/manager/text</url>
+                    <url>http://192.168.50.50:80/manager/text</url>
                     <server>remote</server>
                     <path>/dayreport</path>
                 </configuration>
@@ -83,22 +84,27 @@
             <artifactId>subethasmtp-wiser</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-excelant</artifactId>
+            <version>3.13</version>
+        </dependency>
     </dependencies>
 
     <properties>
-        <amp.genericCore>true</amp.genericCore>
+        <amp.genericCore>false</amp.genericCore>
         <amp.fullSource>false</amp.fullSource>
         <dao.framework>hibernate</dao.framework>
         <db.name>dayreport</db.name>
         <web.framework>struts</web.framework>
-
+        
         <!--DataBase Profile-->
         <jdbc.groupId>mysql</jdbc.groupId>
         <jdbc.artifactId>mysql-connector-java</jdbc.artifactId>
         <jdbc.version>5.1.27</jdbc.version>
         <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
         <jdbc.url>
-            <![CDATA[jdbc:mysql://218.94.109.106:33306/${db.name}?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true]]>
+            <![CDATA[jdbc:mysql://192.168.50.50:3306/${db.name}?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true]]>
         </jdbc.url>
         <jdbc.username>root</jdbc.username>
         <jdbc.password>123456</jdbc.password>
