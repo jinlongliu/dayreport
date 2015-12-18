@@ -32,10 +32,12 @@
                 <i class="icon-ok icon-white"></i> <fmt:message key="button.save"/>
             </s:submit>
             <c:if test="${not empty workdayReport.id}">
-                <s:submit type="button" id="delete" cssClass="btn btn-danger" method="delete" key="button.delete"
-                    onclick="return confirmMessage(msgDelConfirm)" theme="simple">
-                    <i class="icon-trash icon-white"></i> <fmt:message key="button.delete"/>
-                </s:submit>
+                <c:if test="${userIsAdmin}">
+                    <s:submit type="button" id="delete" cssClass="btn btn-danger" method="delete" key="button.delete"
+                        onclick="return confirmMessage(msgDelConfirm)" theme="simple">
+                        <i class="icon-trash icon-white"></i> <fmt:message key="button.delete"/>
+                    </s:submit>
+                </c:if>
             </c:if>
             <a href="${ctx}/workdayReports" class="btn btn-default">
                 <i class="icon-remove"></i> <fmt:message key="button.cancel"/></a>
