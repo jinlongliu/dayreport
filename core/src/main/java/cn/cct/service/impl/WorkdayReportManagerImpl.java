@@ -56,8 +56,10 @@ public class WorkdayReportManagerImpl extends GenericManagerImpl<WorkdayReport, 
 
             FileInputStream excelInputFile = new FileInputStream(storePath + "workbook.xls");
 
+            /*由文件新增工作簿*/
             Workbook wb = new HSSFWorkbook(excelInputFile);
 
+            /*获取工作表*/
             Sheet sheet = wb.getSheetAt(0);
             int i = 5;
             Iterator<WorkdayReport> iterator = workdayReports.iterator();
@@ -66,6 +68,7 @@ public class WorkdayReportManagerImpl extends GenericManagerImpl<WorkdayReport, 
 
                 WorkdayReport workdayReport = iterator.next();
                 User user = userDao.get(workdayReport.getUserId());
+                /*获取单元格*/
                 Row row = sheet.getRow(i);
                 if(row == null){
                     row = sheet.createRow(i);
