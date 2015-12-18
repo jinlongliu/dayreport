@@ -16,6 +16,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import javax.jws.WebService;
@@ -29,6 +30,7 @@ public class WorkdayReportManagerImpl extends GenericManagerImpl<WorkdayReport, 
     UserDao userDao;
 
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    private SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Autowired
     public WorkdayReportManagerImpl(WorkdayReportDao workdayReportDao) {
@@ -41,8 +43,15 @@ public class WorkdayReportManagerImpl extends GenericManagerImpl<WorkdayReport, 
     public void exportReports(String storePath) {
         try{
             log.info("Start export reports----------------");
-            List workdayReports = workdayReportDao.getAll();
+
+
+
             String today = sdf.format(new Date());
+            HashMap<String, Object> queryParams = new HashMap<String, Object>();
+            Date queryToday = sdf2.parse(today + " 00:00:00");
+            queryParams.put("writeTime", queryToday);
+            List workdayReports = workdayReportDao.findByNamedQuery("queryReportsByDate", queryParams);
+            log.debug(workdayReports);
 
 
             FileInputStream excelInputFile = new FileInputStream(storePath + "workbook.xls");

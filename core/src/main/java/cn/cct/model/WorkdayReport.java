@@ -8,17 +8,11 @@ import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
 
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+import javax.persistence.*;
+
 import static javax.persistence.GenerationType.IDENTITY;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -28,6 +22,12 @@ import java.io.Serializable;
 @Table(name="workday_report",catalog="dayreport")
 @Indexed
 @XmlRootElement
+@NamedQueries({
+        @NamedQuery(
+                name = "queryReportsByDate",
+                query = "select wr from WorkdayReport wr where wr.writeTime = :writeTime "
+        )
+})
 public class WorkdayReport extends BaseObject implements Serializable {
     private Long id;
     private Date lastUpdateTime;
