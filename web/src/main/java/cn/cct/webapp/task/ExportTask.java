@@ -78,9 +78,12 @@ public class ExportTask implements ApplicationContextAware {
             String emailFrom = "华讯教育开发组 <huaxunchina_jira@126.com>";
 
             String fileName = "workdayreport-temp.xls";
+            /*获取当前class目录*/
             String classPath = this.getClass().getResource("").toString().split(":")[1];
+            /*日报Excel绝对路径文件*/
             File in = new File(attachmentFile);
             File out = new File(classPath + fileName);
+            /*拷贝文件指classpath*/
             FileCopyUtils.copy(in, out);
             ClassPathResource cpResource = new ClassPathResource(fileName, ExportTask.class);
 
