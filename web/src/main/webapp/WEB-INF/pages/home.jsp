@@ -13,8 +13,8 @@
     <li>
         <a href="<c:url value='/editProfile'/>"><fmt:message key="menu.user"/></a>
     </li>
-    <li>
+    <%--<li>
         <a href="<c:url value='/selectFile'/>"><fmt:message key="menu.selectFile"/></a>
-    </li>
+    </li>--%>
 </ul>
 </body>
