@@ -38,8 +38,16 @@ public class WorkdayReportAction extends BaseAction implements Preparable {
     private String query;
 
     private List reportShows;
+    private String queryLabel;
+    private Date queryDate;
 
+
+    /*参数是否是管理员*/
     private boolean userIsAdmin = false;
+
+    private Long someoneUserId;
+
+    private List allUsers;
 
     @Autowired
     private UserManager userManager;
@@ -58,6 +66,32 @@ public class WorkdayReportAction extends BaseAction implements Preparable {
 
     public boolean isUserIsAdmin() {
         return userIsAdmin;
+    }
+
+    public Long getSomeoneUserId() {
+        return someoneUserId;
+    }
+
+    public void setSomeoneUserId(Long someoneUserId) {
+        this.someoneUserId = someoneUserId;
+    }
+
+    public String getQueryLabel() {
+        queryLabel = getText("workdayReport.writeName");
+        return queryLabel;
+    }
+
+    public Date getQueryDate() {
+        return queryDate;
+    }
+
+    public void setQueryDate(Date queryDate) {
+        this.queryDate = queryDate;
+    }
+
+    public List getAllUsers() {
+        allUsers = userManager.getAll();
+        return allUsers;
     }
 
     /**
@@ -82,7 +116,14 @@ public class WorkdayReportAction extends BaseAction implements Preparable {
     public String showReports(){
         try {
             log.debug("Show reports.......");
-            workdayReports = workdayReportManager.search(query, WorkdayReport.class);
+
+
+            if(someoneUserId == null && queryDate == null){
+                workdayReports = workdayReportManager.search(query, WorkdayReport.class);
+            }else {
+                workdayReports = workdayReportManager.queryReports(someoneUserId, queryDate);
+            }
+
             reportShows = new ArrayList<ReportShow>();
             Iterator<WorkdayReport> it = workdayReports.iterator();
             while (it.hasNext()){
@@ -95,6 +136,7 @@ public class WorkdayReportAction extends BaseAction implements Preparable {
             }
         } catch (Exception se) {
             addActionError(se.getMessage());
+            log.debug(se.getMessage());
             workdayReports = workdayReportManager.getAll();
         }
         return SUCCESS;
