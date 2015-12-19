@@ -17,15 +17,38 @@
 <div class="col-sm-6">
     <s:form id="workdayReportForm" action="saveWorkdayReport" method="post" validate="true" cssClass="well">
         <s:hidden key="workdayReport.id"/>
-        <s:textfield cssClass="form-control date" key="workdayReport.lastUpdateTime" required="false" maxlength="19" size="11" title="date" datepicker="true">
-            <s:param name="value"><s:date name="workdayReport.lastUpdateTime" format="yyyy-MM-dd"/></s:param>
-        </s:textfield>
+
         <s:textarea rows="6" cssClass="form-control" key="workdayReport.todayReport" required="false" maxlength="255" />
         <s:textarea rows="6" cssClass="form-control" key="workdayReport.tomrrowPlan" required="false" maxlength="255" />
         <s:hidden cssClass="form-control" key="workdayReport.userId" maxlength="255" />
-        <s:textfield cssClass="form-control date" key="workdayReport.writeTime" required="false" maxlength="19" size="11" title="date" datepicker="true">
-            <s:param name="value"><s:date name="workdayReport.writeTime" format="yyyy-MM-dd"/></s:param>
-        </s:textfield>
+
+
+
+        <c:choose>
+            <c:when test="${not empty workdayReport.id}">
+                <s:textfield disabled="true" cssClass="form-control date" key="workdayReport.lastUpdateTime" required="false" maxlength="19" size="11" title="date" datepicker="true">
+                    <s:param name="value"><s:date name="workdayReport.lastUpdateTime" format="yyyy-MM-dd HH:mm:ss"/></s:param>
+                </s:textfield>
+            </c:when>
+            <c:otherwise>
+                <s:hidden cssClass="form-control date" key="workdayReport.lastUpdateTime" required="false" maxlength="19" size="11" title="date" datepicker="true">
+                    <s:param name="value"><s:date name="workdayReport.lastUpdateTime" format="yyyy-MM-dd"/></s:param>
+                </s:hidden>
+            </c:otherwise>
+        </c:choose>
+
+        <c:choose>
+            <c:when test="${not empty workdayReport.id}">
+                <s:textfield disabled="true" cssClass="form-control date" key="workdayReport.writeTime" required="false" maxlength="19" size="11" title="date" datepicker="true">
+                    <s:param name="value"><s:date name="workdayReport.writeTime" format="yyyy-MM-dd HH:mm:ss"/></s:param>
+                </s:textfield>
+            </c:when>
+            <c:otherwise>
+                <s:hidden cssClass="form-control date" key="workdayReport.writeTime" required="false" maxlength="19" size="11" title="date" datepicker="true">
+                    <s:param name="value"><s:date name="workdayReport.writeTime" format="yyyy-MM-dd"/></s:param>
+                </s:hidden>
+            </c:otherwise>
+        </c:choose>
 
         <div class="form-group">
             <s:submit type="button" id="save" cssClass="btn btn-primary" method="save" key="button.save" theme="simple">
@@ -39,7 +62,7 @@
                     </s:submit>
                 </c:if>
             </c:if>
-            <a href="${ctx}/workdayReports" class="btn btn-default">
+            <a href="${ctx}/showReports" class="btn btn-default">
                 <i class="icon-remove"></i> <fmt:message key="button.cancel"/></a>
         </div>
     </s:form>
