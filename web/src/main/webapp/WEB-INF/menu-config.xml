@@ -14,7 +14,7 @@
         </Menu>
         <!--WorkdayReport-START-->
         <Menu name="WorkdayReportMenu" title="workdayReportList.title" page="/workdayReports" roles="ROLE_ADMIN,ROLE_USER"/>
-        <Menu name="ReportHistoryMenu" title="workdayReportList.title" page="/showReports" roles="ROLE_ADMIN,ROLE_USER"/>
+        <Menu name="ReportManagerMenu" title="ReportManagerMenu.title" page="/showReports" roles="ROLE_ADMIN,ROLE_USER"/>
         <!--WorkdayReport-END-->
         <Menu name="Logout" title="user.logout" page="/logout" roles="ROLE_ADMIN,ROLE_USER"/>
     </Menus>
