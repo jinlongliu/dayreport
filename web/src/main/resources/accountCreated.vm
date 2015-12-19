@@ -1,5 +1,5 @@
 ${message}
 
-Username: ${user.username}
+用户名: ${user.username}
 
-Login at: ${applicationURL}
+登录地址: ${applicationURL}
