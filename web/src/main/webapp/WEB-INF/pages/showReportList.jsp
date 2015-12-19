@@ -2,7 +2,7 @@
 
 <head>
     <title><fmt:message key="workdayReportList.title"/></title>
-    <meta name="menu" content="WorkdayReportMenu"/>
+    <meta name="menu" content="ReportManagerMenu"/>
 </head>
 <body>
     <h2><fmt:message key="workdayReportList.heading"/></h2>
