@@ -131,6 +131,21 @@ public class WorkdayReportManagerImpl extends GenericManagerImpl<WorkdayReport, 
         }
     }
 
+    @Override
+    public List queryReports(Long userId, Date someday) {
+        HashMap<String, Object> queryParams = new HashMap<String, Object>();
+        if(userId != null && someday != null ){
+            queryParams.put("userId", userId);
+            queryParams.put("writeTime", someday);
+            return workdayReportDao.findByNamedQuery("queryReportsByTwoColumn", queryParams);
+        }else if(userId != null){
+            queryParams.put("userId", userId);
+            return workdayReportDao.findByNamedQuery("queryReportsByUserId", queryParams);
+        }else {
+            queryParams.put("writeTime", someday);
+            return workdayReportDao.findByNamedQuery("queryReportsByDate", queryParams);
+        }
+    }
 
     @Override
     public String getEmailBody() {
