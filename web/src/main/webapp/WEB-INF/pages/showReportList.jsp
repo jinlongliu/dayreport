@@ -29,7 +29,18 @@
             <i class="icon-ok"></i> <fmt:message key="button.done"/>
         </a>
     </div>
-
+    <form method="get" action="${ctx}/showReports" id="searchForm" class="form-inline">
+    <div>
+        <s:select name="someoneUserId" list="allUsers" cssClass="form-control" listKey="id" listValue="firstName+lastName"
+                  headerKey="" headerValue="%{queryLabel}"/>
+        <s:textfield cssClass="form-control date" name="queryDate" namemaxlength="19" size="11" title="date" datepicker="true">
+            <s:param name="value"><s:date name="queryDate" format="yyyy-MM-dd"/></s:param>
+        </s:textfield>
+        <button id="button.search" class="btn btn-primary btn-sm" type="submit">
+            <i class="icon-search"></i> <fmt:message key="button.filter"/>
+        </button>
+    </div>
+    </form>
     <display:table name="reportShows" class="table table-condensed table-striped table-hover" requestURI="" id="reportShow" export="true" pagesize="25">
         <display:column property="workdayReport.id" sortable="true" href="editWorkdayReport" media="html"
             paramId="id" paramProperty="workdayReport.id" titleKey="workdayReport.id"/>
@@ -49,4 +60,15 @@
         <display:setProperty name="export.csv.filename"><fmt:message key="workdayReportList.title"/>.csv</display:setProperty>
         <display:setProperty name="export.pdf.filename"><fmt:message key="workdayReportList.title"/>.pdf</display:setProperty>
     </display:table>
+    <link rel="stylesheet" type="text/css" media="all" href="<c:url value='/webjars/bootstrap-datepicker/1.3.1/css/datepicker.css'/>" />
+    <script type="text/javascript" src="<c:url value='/webjars/jquery/1.11.1/jquery.min.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/webjars/bootstrap-datepicker/1.3.1/js/bootstrap-datepicker.js'/>"></script>
+    <c:if test="${pageContext.request.locale.language != 'en'}">
+        <script type="text/javascript" src="<c:url value='/webjars/bootstrap-datepicker/1.3.1/js/locales/bootstrap-datepicker.zh-CN.js'/>"></script>
+    </c:if>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.date').datepicker({format: "<fmt:message key='calendar.format'/>", weekStart: "<fmt:message key='calendar.weekstart'/>", language: 'zh-CN'});
+        });
+    </script>
 </body>
