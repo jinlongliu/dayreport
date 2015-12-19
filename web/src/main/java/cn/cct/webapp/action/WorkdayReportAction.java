@@ -208,6 +208,9 @@ public class WorkdayReportAction extends BaseAction implements Preparable {
             return delete();
         }
 
+        Date now = new Date();
+
+        /*通过判断是否有日报ID来判定是新增还是编辑*/
         boolean isNew = (workdayReport.getId() == null);
         Long loginUserId = (Long)getSession().getAttribute("loginUserId");
         if(isNew) {
@@ -215,12 +218,16 @@ public class WorkdayReportAction extends BaseAction implements Preparable {
             if(loginUserId != null){
                 workdayReport.setUserId(loginUserId);
             }
+            workdayReport.setWriteTime(now);
+            workdayReport.setLastUpdateTime(now);
         }else {
             if(workdayReport.getUserId() != loginUserId){
                 log.debug("You have not right to edit this report");
                 saveMessage(getText("right.error.message"));
                 return INPUT;
             }
+            /*如果不是新增是编辑,则更新最后编辑时间*/
+            workdayReport.setLastUpdateTime(now);
         }
 
         workdayReportManager.save(workdayReport);
