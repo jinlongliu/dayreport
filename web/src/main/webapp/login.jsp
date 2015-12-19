@@ -32,11 +32,11 @@
     </button>
 </form>
 
-<p>
+<%--<p>
     <fmt:message key="login.signup">
         <fmt:param><c:url value="/signup"/></fmt:param>
     </fmt:message>
-</p>
+</p>--%>
 
 <c:set var="scripts" scope="request">
 <%@ include file="/scripts/login.js"%>
