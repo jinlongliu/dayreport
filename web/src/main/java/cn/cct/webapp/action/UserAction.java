@@ -203,6 +203,7 @@ public class UserAction extends BaseAction implements Preparable {
             if (isNew) {
                 saveMessage(getText("user.added", args));
                 // Send an account information e-mail
+                mailMessage.setFrom(getText("team.name") + "<huaxunchina_jira@126.com>");
                 mailMessage.setSubject(getText("signup.email.subject"));
                 try {
                     sendUserMessage(user, getText("newuser.email.message", args), RequestUtil.getAppURL(getRequest()));
