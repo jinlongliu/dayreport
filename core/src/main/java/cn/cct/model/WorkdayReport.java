@@ -25,7 +25,7 @@ import java.io.Serializable;
 @NamedQueries({
         @NamedQuery(
                 name = "queryReportsByDate",
-                query = "select wr from WorkdayReport wr where wr.writeTime = :writeTime "
+                query = "select wr from WorkdayReport wr where DAY(wr.writeTime) = DAY(:writeTime) "
         ),
         @NamedQuery(
                 name = "queryReportsByUserId",
@@ -33,7 +33,7 @@ import java.io.Serializable;
         ),
         @NamedQuery(
                 name = "queryReportsByTwoColumn",
-                query = "select wr from WorkdayReport wr where wr.userId = :userId and wr.writeTime = :writeTime"
+                query = "select wr from WorkdayReport wr where wr.userId = :userId and DAY(wr.writeTime) = DAY(:writeTime)"
         )
 })
 public class WorkdayReport extends BaseObject implements Serializable {
