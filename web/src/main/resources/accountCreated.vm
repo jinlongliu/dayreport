@@ -2,4 +2,6 @@ ${message}
 
 用户名: ${user.username}
 
+密码:123456
+
 登录地址: ${applicationURL}
