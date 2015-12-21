@@ -45,6 +45,27 @@
                     </execution>
                 </executions>
             </plugin>
+            <!--<plugin>
+                <groupId>ro.isdc.wro4j</groupId>
+                <artifactId>wro4j-maven-plugin</artifactId>
+                <version>${wro4j.version}</version>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <targetGroups>main</targetGroups>
+                    <minimize>false</minimize>
+                    <destinationFolder>${basedir}/src/main/webapp/wro/</destinationFolder>
+                    <contextFolder>${basedir}/src/main/webapp</contextFolder>
+                    <extraConfigFile>${basedir}/src/main/webapp/WEB-INF/wro.properties</extraConfigFile>
+                    <wroManagerFactory>ro.isdc.wro.maven.plugin.manager.factory.ConfigurableWroManagerFactory</wroManagerFactory>
+                </configuration>
+            </plugin>-->
         </plugins>
         <resources>
             <resource>
