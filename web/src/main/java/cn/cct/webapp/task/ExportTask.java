@@ -1,6 +1,8 @@
 package cn.cct.webapp.task;
 
+import cn.cct.model.User;
 import cn.cct.service.MailEngine;
+import cn.cct.service.UserManager;
 import cn.cct.service.WorkdayReportManager;
 import cn.cct.webapp.action.BaseAction;
 import com.opensymphony.xwork2.TextProvider;
@@ -21,6 +23,8 @@ import org.springframework.web.context.WebApplicationContext;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 
 /**
@@ -36,6 +40,9 @@ public class ExportTask implements ApplicationContextAware {
 
     @Autowired
     private WorkdayReportManager workdayReportManager;
+
+    @Autowired
+    private UserManager userManager;
 
     @Autowired
     private MailEngine mailEngine;
@@ -89,15 +96,42 @@ public class ExportTask implements ApplicationContextAware {
 
             LOG.debug(attachmentFile);
 
-            mailEngine.sendMessage(new String[] {
-                    "nnuljl@qq.com"
-            }, emailFrom, cpResource, emailBody, emailSubject, ATTACHMENT_NAME);
+            String[] sendToList = getSendToList();
+            mailEngine.sendMessage(sendToList, emailFrom, cpResource, emailBody, emailSubject, ATTACHMENT_NAME);
 
         }catch (Exception e){
             LOG.debug(e.getMessage());
         }
 
 
+    }
+
+    public String[] getSendToList(){
+
+        String[] copyToList = new String[]{
+                "fengjun@huaxunchina.cn",
+                "liushaolong@huaxunchina.cn",
+                "liujinlong@huaxunchina.cn"
+        };
+
+        List<User> users = userManager.getAll();
+        String[] sendToList = new String[users.size() - 1 + copyToList.length];
+        Iterator<User> iterator = users.iterator();
+        int i = 0;
+        while (iterator.hasNext()){
+            User user = iterator.next();
+            if(user.getUsername() != null && !user.getUsername().equals("admin")){
+                sendToList[i] = user.getEmail();
+                i++;
+            }
+        }
+
+        for(int j=0; j< copyToList.length; j++){
+            sendToList[i] = copyToList[j];
+            i++;
+        }
+        LOG.debug(sendToList.toString());
+        return  sendToList;
     }
 
     @Override
