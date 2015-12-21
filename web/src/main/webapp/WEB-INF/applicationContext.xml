@@ -25,6 +25,7 @@
         <!-- 日 和 星期 互斥,其中一个必须设置为 ? -->
         <!--<task:scheduled ref="exportTask" method="exportReports" cron="0 30 23 * * ?"/>-->
         <task:scheduled ref="exportTask" method="exportReports" cron="0 30 23 ? * 1-5"/>
+        <!--<task:scheduled ref="exportTask" method="exportReports" cron="0/30 * * ? * 1-5"/>-->
     </task:scheduled-tasks>
 
 </beans>
